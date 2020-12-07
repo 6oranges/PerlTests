@@ -117,7 +117,9 @@ my $HaveTreat="No";
 my $HaveKey="No";
 my $HaveNote="No";
 while (1){
-    MakeMove();
+    if ($Place eq "Start"){
+        print "You are in a forest with no light you may go 'forward' or turn 'left'/'right'\n";
+    }
     if ($Place eq "DangerFish"){
         print "The fish is hungry and somehow you don't make it across the river\n";
         last;
@@ -170,5 +172,5 @@ while (1){
     if ($Place eq "OtherRoom" && $HaveNote eq "Yes"){
         print "This room is empty.\n";
     }
-
+    MakeMove();
 }
