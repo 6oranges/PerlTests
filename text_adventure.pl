@@ -8,8 +8,8 @@ use feature 'say';
 use feature 'switch';
 my %north =  ( Start => 'Dog',
 	           Dog => 'DangerFish',
-    	       Treat => 'Place', 
-	           Place => 'Bridge',
+    	       Treat => 'EmptyPlace', 
+	           EmptyPlace => 'Bridge',
                Bridge => 'Path',
                Path => 'Corridor',
                Corridor=>'Corridor',
@@ -18,8 +18,8 @@ my %north =  ( Start => 'Dog',
                OtherRoom=>'OtherRoom'
                );
 my %east =  ( Start => 'Treat',
-	           Dog => 'Place',
-	           Place => 'Cliff',
+	           Dog => 'EmptyPlace',
+	           EmptyPlace => 'Cliff',
                Treat => 'Cliff',
                Bridge => 'Cliff',
                Note =>'Path',
@@ -30,7 +30,7 @@ my %east =  ( Start => 'Treat',
                );
 my %west =  ( Start => 'Start',
 	           Dog => 'Dog',
-	           Place => 'Dog',
+	           EmptyPlace => 'Dog',
                Treat => 'Start',
                Bridge => 'DangerFish',
                Path =>'Note',
@@ -41,9 +41,9 @@ my %west =  ( Start => 'Start',
                );
 my %south =  ( Start => 'Start',
 	           Dog => 'Start',
-	           Place => 'Treat',
+	           EmptyPlace => 'Treat',
                Treat => 'Treat',
-               Bridge => 'Place',
+               Bridge => 'EmptyPlace',
                Path =>'Bridge',
                Note=>'DangerFish',
                Gold=>'Gold',
@@ -108,20 +108,36 @@ sub MakeMove {
             }
         }
         default {
-            print "Try again!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!";
+            print "Try again!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n";
             MakeMove();
         }
     }
 }
 my $HaveTreat="No";
+my $HaveKey="No";
 while (1){
     MakeMove();
-    if ($Place=="DangerFish"){
+    if ($Place eq "DangerFish"){
         print "The fish is hungry and somehow you don't make it across the river\n";
-        break;
+        last;
     }
-    if ($Place=="Dog" && $HaveTreat=="No"){
+    if ($Place eq "Treat"){
+        print "You Pick Up a Dog Treat.\n";
+        $HaveTreat = "Yes";
+    }
+    if ($Place eq "Dog" && $HaveTreat eq "No"){
         print "The dog gets you...\n";
-        break;
+        last;
+    }
+    if ($Place eq "Dog" && $HaveTreat eq "Yes"){
+        print "You feed the dog a treat, and pick up the key.\n";
+        $HaveKey = "Yes";
+    }
+    if ($Place eq "Cliff"){
+        print "You fell off the cliff.\n";
+        last;
+    }
+    if ($Place eq "EmptyPlace" && $HaveKey eq "No"){
+        print "You feed the dog a treat, and pick up the key.\n";
     }
 }
