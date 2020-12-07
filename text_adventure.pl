@@ -138,6 +138,12 @@ while (1){
         last;
     }
     if ($Place eq "EmptyPlace" && $HaveKey eq "No"){
-        print "You feed the dog a treat, and pick up the key.\n";
+        print "You are located South of the Bridge\n";
+        
     }
+    if ($Place eq "Bridge" && $HaveKey eq "No"){
+        print "The bridge is locked and needs a key, Find the Dog!\n";
+        $Place = "EmptyPlace";
+    }
+
 }
