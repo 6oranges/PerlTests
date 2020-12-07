@@ -138,13 +138,16 @@ while (1){
         print "You fell off the cliff.\n";
         last;
     }
-    if ($Place eq "EmptyPlace" && $HaveKey eq "No"){
+    if ($Place eq "EmptyPlace"){
         print "You are located South of the Bridge\n";
-        
+
     }
     if ($Place eq "Bridge" && $HaveKey eq "No"){
         print "The bridge is locked and needs a key, Find the Dog!\n";
         $Place = "EmptyPlace";
+    }
+    if ($Place eq "Bridge" && $HaveKey eq "Yes"){
+        print "The bridge is Unlocked and there is a pathway in front of you!\n";
     }
     if ($Place eq "Note"){
         print "You pick up a note that let's you enter the castle.\n";
@@ -159,13 +162,12 @@ while (1){
     }
     if ($Place eq "Path"){
         print "You are on a path leading to a castle.\n";
-        last;
     }
     if ($Place eq "Gold"){
         print "You found the gold and won!!! Congratulations!!!\n";
         last;
     }
-    if ($Place eq "Corridor" && $HaveNote eq "Yes"){
+    if ($Place eq "OtherRoom" && $HaveNote eq "Yes"){
         print "This room is empty.\n";
     }
 
