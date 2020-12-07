@@ -115,6 +115,7 @@ sub MakeMove {
 }
 my $HaveTreat="No";
 my $HaveKey="No";
+my $HaveNote="No";
 while (1){
     MakeMove();
     if ($Place eq "DangerFish"){
@@ -137,7 +138,28 @@ while (1){
         print "You fell off the cliff.\n";
         last;
     }
-    if ($Place eq "EmptyPlace" && $HaveKey eq "No"){
-        print "You feed the dog a treat, and pick up the key.\n";
+    if ($Place eq "Note"){
+        print "You pick up a note that let's you enter the castle.\n";
+        $HaveNote = "Yes";
     }
+    if ($Place eq "Corridor" && $HaveNote eq "No"){
+        print "You tried to enter the castle but a guard stopped you. You are back on the path.\n";
+        $Place = "Path";
+    }
+    if ($Place eq "Corridor" && $HaveNote eq "Yes"){
+        print "You enter the cast and see an endless hall, there is a room on the left and one on the right.\n";
+    }
+    if ($Place eq "Path"){
+        print "You are on a path leading to a castle.\n";
+        last;
+    }
+    if ($Place eq "Gold"){
+        print "You found the gold and won!!! Congratulations!!!\n";
+        last;
+    }
+    if ($Place eq "Corridor" && $HaveNote eq "Yes"){
+        print "This room is empty.\n";
+    }
+
+
 }
