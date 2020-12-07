@@ -20,7 +20,7 @@ my ($age,$street) = (40,'123 Main St');
 my $my_info = "$name lives on \"$street\"\n";
 my $my_info2 = qq{$name is "$age"};
 
-#print $my_info, $my_info2;
+print $my_info, $my_info2, "\n";
 
 #say $my_info2;
 #Mat Operations
