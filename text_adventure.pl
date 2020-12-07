@@ -115,6 +115,7 @@ sub MakeMove {
 }
 my $HaveTreat="No";
 my $HaveKey="No";
+my $HaveNote="No";
 while (1){
     MakeMove();
     if ($Place eq "DangerFish"){
